@@ -153,8 +153,8 @@ async function findSteps(scheme_id) {
 function add(scheme) {
   return db('schemes')
     .insert(scheme)
-    .then((scheme_id) => {
-      return db('schemes').where('scheme_id', scheme_id);
+    .then(([scheme_id]) => {
+      return db('schemes').where('scheme_id', scheme_id).first();
     });
 
   // EXERCISE D
