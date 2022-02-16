@@ -6,9 +6,8 @@ SELECT products.ProductName, categories.CategoryName FROM products
 LEFT JOIN categories ON products.supplierid = categories.CategoryID;
 
 -- Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Shows 429 records.
--- TODO - this is only 196.....
-SELECT orders.OrderID, shippers.ShipperName FROM orders
-LEFT JOIN shippers ON orders.ShipperID = shippers.ShipperID 
+SELECT orders.OrderID, shipper.ShipperName FROM orders
+LEFT JOIN shipper ON orders.ShipperID = shipper.ShipperID 
 WHERE orderdate <= '2012.08.09'
 
 -- Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Shows 3 records.

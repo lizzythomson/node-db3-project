@@ -122,7 +122,6 @@ async function findSteps(scheme_id) {
     .leftJoin('steps as st', 'sc.scheme_id', 'st.scheme_id')
     .where('sc.scheme_id', scheme_id)
     .orderBy('st.step_number');
-
   if (!rows[0].step_id) {
     return [];
   } else {
