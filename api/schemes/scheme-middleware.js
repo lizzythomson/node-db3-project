@@ -15,11 +15,9 @@ const checkSchemeId = async (req, res, next) => {
       .first();
 
     if (!result) {
-      res
-        .status(404)
-        .json({
-          message: `scheme with scheme_id ${req.params.scheme_id} not found`,
-        });
+      res.status(404).json({
+        message: `scheme with scheme_id ${req.params.scheme_id} not found`,
+      });
     } else {
       next();
     }
@@ -37,8 +35,11 @@ const checkSchemeId = async (req, res, next) => {
   }
 */
 const validateScheme = (req, res, next) => {
-  const scheme_name = req.body.scheme_name.trim();
-  if (!scheme_name || typeof scheme_name !== 'string') {
+  if (
+    req.body.scheme_name === undefined ||
+    typeof req.body.scheme_name !== 'string' ||
+    !req.body.scheme_name.trim()
+  ) {
     res.status(400).json({ message: 'invalid scheme_name' });
   } else {
     next();
@@ -54,13 +55,12 @@ const validateScheme = (req, res, next) => {
   }
 */
 const validateStep = (req, res, next) => {
-  const instructions = req.body.instructions.trim();
-  const step_number = req.body.step_number;
   if (
-    !instructions ||
-    typeof instructions !== 'string' ||
-    typeof step_number !== 'number' ||
-    step_number < 1
+    req.body.instructions === undefined ||
+    typeof req.body.instructions !== 'string' ||
+    !req.body.instruction.trim() ||
+    typeof req.body.step_number !== 'number' ||
+    req.body.step_number < 1
   ) {
     res.status(400).json({ message: 'invalid step' });
   } else {
